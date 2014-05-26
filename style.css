@@ -253,7 +253,6 @@ textarea {
 	font-size: 100%; /* Corrects font size not being inherited in all browsers */
 	margin: 0; /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
 	vertical-align: baseline; /* Improves appearance and consistency in all browsers */
-	*vertical-align: middle; /* Improves appearance and consistency in IE6/IE7 */
 }
 button,
 input[type="button"],
@@ -383,15 +382,14 @@ a:active {
 }
 .main-navigation ul ul {
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-	display: none;
 	float: left;
-	left: 0;
 	position: absolute;
 	top: 1.5em;
+	left: -999em;
 	z-index: 99999;
 }
 .main-navigation ul ul ul {
-	left: 100%;
+	left: -999em;
 	top: 0;
 }
 .main-navigation ul ul a {
@@ -406,14 +404,16 @@ a:active {
 .main-navigation ul ul a:hover {
 }
 .main-navigation ul li:hover > ul {
-	display: block;
+	left: auto;
+}
+.main-navigation ul ul li:hover > ul {
+	left: 100%;
 }
 .main-navigation .current_page_item a,
 .main-navigation .current-menu-item a {
 }
 /* Small menu */
 .menu-toggle {
-	cursor: pointer;
 	display: none;
 }
 @media screen and (max-width: 600px) {
@@ -453,6 +453,9 @@ a:active {
 .screen-reader-text {
 	clip: rect(1px, 1px, 1px, 1px);
 	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
 }
 
 .screen-reader-text:hover,
@@ -621,14 +624,12 @@ object {
 12.1 Captions
 --------------------------------------------------------------*/
 .wp-caption {
-	border: 1px solid #ccc;
 	margin-bottom: 1.5em;
 	max-width: 100%;
 }
 .wp-caption img[class*="wp-image-"] {
 	display: block;
-	margin: 1.2% auto 0;
-	max-width: 98%;
+	margin: 0 auto;
 }
 .wp-caption-text {
 	text-align: center;
